@@ -1,0 +1,5 @@
+# Libs
+node_modules
+
+# Built files
+dist
