@@ -30,4 +30,4 @@ In the picture above, you can see that we separated our architecture in the foll
 - Data: Everything that deals with databases.
 - Infra: Stuffs that deals with infrastructure tools.
 
-Despite of being a complex architecture, we're able to decouple all the external libraries of our project, being able to easily change than when needed.
+Despite of being a complex architecture, we're able to decouple all the external libraries of our project, being able to easily change them when needed.
