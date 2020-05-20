@@ -93,7 +93,7 @@ Some concepts are really important to know when faking data:
 
 ## Best coding practices
 
-Please be minded that the following practices can sometimes not be followed exactly how it is, since sometimes you'll come up with some exceptions. Despite of that, they keep being good practices to try to follow when you can, since they help you loosing coupling and avoiding side effects on your application.
+Please be minded that the following practices can sometimes not be followed exactly how they we're expected to be, since sometimes you'll come up with some exceptions. Despite of that, they keep being good practices to try to follow when you can, since they help you loosing coupling and avoiding side effects on your application.
 
 1. A method should own a single responsability
 ```ts
