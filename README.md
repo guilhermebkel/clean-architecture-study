@@ -4,6 +4,7 @@
 ## Summary
 
 - [ Clean architecture ](#clean-architecture)
+- [ Test driven development ](#test-driven-development)
 
 <a name="clean-architecture"></a>
 
@@ -31,3 +32,58 @@ In the picture above, you can see that we separated our architecture in the foll
 - Infra: Stuffs that deals with infrastructure tools.
 
 Despite of being a complex architecture, we're able to decouple all the external libraries of our project, being able to easily change them when needed.
+
+<a name="test-driven-development"></a>
+
+## Test driven development
+
+When we talk about TDD, we need to make sure that its main idea is going to be practiced:
+
+> Start by making the test to fail
+>
+> Make the less as you can to succeed the test
+> 
+> Improve the code by refactoring it
+>
+> **Make it all again till you finish the feature!**
+
+Besides, when we're dealing with tests, way too much often we'll need to fake some data or even actions to test our software. When making it, we need to ensure we're not coupling the tests with already made features of our project. Below you can see an example:
+
+Suppose that you're going to test a class called **SignUpController** and it uses a **Validator** via dependency injection.
+
+```ts
+/**
+ * Wrong way to do it, since you're coupling with
+ * something outside.
+ **/
+
+import EmailValidator from "../validators/EmailValidator"
+
+const signUpController = new SignUpController(EmailValidator)
+```
+
+```ts
+/**
+ * Correct way. Looses coupling and uses the same
+ * signature of "EmailValidator" class, making sure
+ * we're using almost the same production class.
+ **/
+
+import { IEmailValidator } from "../validators/EmailValidator"
+
+class EmailValidatorStub implements IEmailValidator {
+	isValid() {
+		return true
+	}
+}
+
+const signUpController = new SignUpController(EmailValidatorStub)
+```
+
+Some concepts are really important to know when faking data:
+
+1. Stub: A method that implements the same signature of the production one (the difference is that it returns the same value everytime), what means that you'll have no surprises all the way long, while testing without coupling your system.
+
+2. Spy: A method implement by the test framework, used to stalk methods and changes the data returned by them (usually used when you have a method returning everytime the same value but in some tests you expect another)
+
+3. Mock: Usually static data that you'll consume on your tests.
