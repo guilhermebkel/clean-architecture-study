@@ -84,6 +84,6 @@ Some concepts are really important to know when faking data:
 
 1. Stub: A method that implements the same signature of the production one (the difference is that it returns the same value everytime), what means that you'll have no surprises all the way long, while testing without coupling your system.
 
-2. Spy: A method implement by the test framework, used to stalk methods and changes the data returned by them (usually used when you have a method returning everytime the same value but in some tests you expect another)
+2. Spy: A method implemented by the test framework, used to stalk methods and changes the data returned by them (usually used when you have a method returning everytime the same value but in some tests you expect another)
 
 3. Mock: Usually static data that you'll consume on your tests.
