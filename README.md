@@ -5,6 +5,7 @@
 
 - [ Clean architecture ](#clean-architecture)
 - [ Test driven development ](#test-driven-development)
+- [ Best coding practices ](#best-coding-practices)
 
 <a name="clean-architecture"></a>
 
@@ -87,3 +88,29 @@ Some concepts are really important to know when faking data:
 2. Spy: A method implemented by the test framework, used to stalk methods and changes the data returned by them (usually used when you have a method returning everytime the same value but in some tests you expect another).
 
 3. Mock: Usually static data that you'll consume on your tests.
+
+<a name="best-coding-practices"></a>
+
+## Best coding practices
+
+Please be minded that the following practices can sometimes not be followed exactly how it is, since sometimes you'll come up with some exceptions. Despite of that, they keep being good practices to try to follow when you can, since they help you loosing coupling and avoiding side effects on your application.
+
+1. A method should own a single responsability
+```ts
+/**
+ * Usually not the best way since as the name suggests,
+ * it was only made to sum numbers.
+ **/
+function sum(firstNumber, secondNumber) {
+	const doubledFirstNumber = firstNumber * 2
+
+	return doubledFirstNumber + secondNumber
+}
+
+/**
+ * Usually the correct way.
+ **/
+function sum(firstNumber, secondNumber) {
+	return firstNumber + secondNumber
+}
+```
