@@ -14,7 +14,7 @@ describe('SignUpRoutesMiddleware', () => {
   })
 
   beforeEach(async () => {
-    const accountCollection = MongoHelper.getCollection('accounts')
+    const accountCollection = await MongoHelper.getCollection('accounts')
 
     await accountCollection.deleteMany({})
   })
