@@ -6,6 +6,7 @@
 - [ Clean architecture ](#clean-architecture)
 - [ Test driven development ](#test-driven-development)
 - [ Best coding practices ](#best-coding-practices)
+- [ Decorator ](#decorator)
 
 <a name="clean-architecture"></a>
 
@@ -113,4 +114,52 @@ function sum(firstNumber, secondNumber) {
 function sum(firstNumber, secondNumber) {
 	return firstNumber + secondNumber
 }
+```
+
+<a name="decorator"></a>
+
+## Decorator
+
+Sometimes we'll need to add dependencies to our factories without needing to pass it inside them. One of the ways to do that is by implementing the **Decorator** pattern.
+
+This pattern consists in adding a **Outer Layer** that embraces a **Main Layer**.
+
+Suppose that we have a **Controller** and we want to implement a **Logger** around that:
+```ts
+interface IController {
+	handle(): Promise<{ success: boolean } | { error: Error }>
+}
+
+class Controller implements IController {
+	async handle() {
+		try {
+			return { success: true }
+		} catch(error) {
+			return { error }
+		}
+	}
+}
+
+class LogControllerDecorator implements IController {
+	private readonly controller: IController
+
+	constructor(controller: IController) {
+		this.controller = controller
+	}
+
+	async handle() {
+		const result = await this.controller.handle()
+
+		if (result.error) {
+			console.log(`We're wrapping around Controller: ${result.error.message}`)
+		}
+
+		return result
+	}
+}
+
+const controller = new Controller()
+const logControllerDecorator = new LogControllerDecorator(controller)
+
+logControllerDecorator.handle()
 ```
