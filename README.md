@@ -6,7 +6,7 @@
 - [ Clean architecture ](#clean-architecture)
 - [ Test driven development ](#test-driven-development)
 - [ Best coding practices ](#best-coding-practices)
-- [ Decorator ](#decorator)
+- [ Design Pattern Decorator ](#design-pattern-decorator)
 
 <a name="clean-architecture"></a>
 
@@ -116,9 +116,9 @@ function sum(firstNumber, secondNumber) {
 }
 ```
 
-<a name="decorator"></a>
+<a name="design-pattern-decorator"></a>
 
-## Decorator
+## Design Pattern Decorator
 
 Sometimes we'll need to add dependencies to our factories without needing to pass it inside them. One of the ways to do that is by implementing the **Decorator** pattern.
 
