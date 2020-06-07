@@ -4,4 +4,4 @@ export * from '../../../domain/usecases/AddAccount'
 
 export * from '../../../domain/models/Account'
 
-export * from '../../helpers/validators/Validation'
+export * from '../../protocols/Validation'
