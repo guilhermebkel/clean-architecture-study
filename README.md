@@ -7,6 +7,7 @@
 - [ Test driven development ](#test-driven-development)
 - [ Best coding practices ](#best-coding-practices)
 - [ Design Pattern Decorator ](#design-pattern-decorator)
+- [ Design Pattern Composite ](#design-pattern-composite)
 
 <a name="clean-architecture"></a>
 
@@ -162,4 +163,79 @@ const controller = new Controller()
 const logControllerDecorator = new LogControllerDecorator(controller)
 
 logControllerDecorator.handle()
+```
+
+<a name="design-pattern-composite"></a>
+
+## Design Pattern Composite
+
+Sometimes we'll create some services that need to be replicated all around the application.
+
+One example can be a **Validation**, since we can make the following validations: **Email, Missing Param, Invalid Param, etc...**.
+
+To improve this scalability to be done all around the application, we can use the **Design Pattern Composite** that consists in a **Main Factory** that receives another **Factories** to accomplish a single responsability.
+
+```ts
+interface Validation {
+	validate(input: any): Error
+}
+
+class ValidationComposite implements Validation {
+	private readonly validators: Validation[]
+
+	constructor(validators: Validation[]) {
+		this.validators = validators
+	}
+
+	validate(input: any) {
+		for (const validator of this.validators) {
+			const error = validator.validate(input)
+
+			if (error) {
+				return error
+			}
+		}
+	}
+}
+
+class RequiredParamValidation implements Validation {
+	private readonly inputField: string
+
+	constructor(inputField: string) {
+		this.inputField = inputField
+	}
+
+	validate(input: any) {
+		if (!input[this.inputField]) {
+			return new Error(`Param not supplied: ${this.inputField}`)
+		}
+	}
+}
+
+class IsNumberValidation implements Validation {
+	private readonly inputField: string
+
+	constructor(inputField: string) {
+		this.inputField = inputField
+	}
+
+	validate(input: any) {
+		if (isNaN(+input[this.inputField])) {
+			return new Error(`Not a number: ${this.inputField}`)
+		}
+	}
+}
+
+const requiredParamValidation = new RequiredParamValidation('name')
+const isNumberValidation = new IsNumberValidation('phone')
+
+const validationComposite = new ValidationComposite([
+	requiredParamValidation,
+	isNumberValidation
+])
+
+validationComposite.validate({
+	name: 'any_name',
+	phone: 123456789
+})
 ```
