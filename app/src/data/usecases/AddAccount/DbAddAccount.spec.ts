@@ -30,17 +30,17 @@ const makeAddAccountRepository = (): AddAccountRepository => {
 
 interface SutTypes {
   sut: DbAddAccount
-  HasherStub: Hasher
+  hasherStub: Hasher
   addAccountRepositoryStub: AddAccountRepository
 }
 
 const makeSut = (): SutTypes => {
-  const HasherStub = makeHasher()
+  const hasherStub = makeHasher()
   const addAccountRepositoryStub = makeAddAccountRepository()
-  const sut = new DbAddAccount(HasherStub, addAccountRepositoryStub)
+  const sut = new DbAddAccount(hasherStub, addAccountRepositoryStub)
 
   return {
-    HasherStub,
+    hasherStub,
     addAccountRepositoryStub,
     sut
   }
@@ -48,9 +48,9 @@ const makeSut = (): SutTypes => {
 
 describe('DBAddAccount Usecase', () => {
   test('Should call Hasher with correct password', async () => {
-    const { HasherStub, sut } = makeSut()
+    const { hasherStub, sut } = makeSut()
 
-    const hashSpy = jest.spyOn(HasherStub, 'hash')
+    const hashSpy = jest.spyOn(hasherStub, 'hash')
 
     const accountData = {
       name: 'valid_name',
@@ -64,9 +64,9 @@ describe('DBAddAccount Usecase', () => {
   })
 
   test('Should throw if Hasher throws', async () => {
-    const { HasherStub, sut } = makeSut()
+    const { hasherStub, sut } = makeSut()
 
-    jest.spyOn(HasherStub, 'hash').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
+    jest.spyOn(hasherStub, 'hash').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
 
     const accountData = {
       name: 'valid_name',
