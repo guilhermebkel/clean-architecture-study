@@ -1,5 +1,29 @@
 # clean-node
-:shower: A deep study about the best programming practices and design patterns (such as TDD, Clean Architecture and SOLID) with help of Node.js
+:shower: A deep study about the best programming practices and design patterns (such as TDD, DDD, Clean Architecture and SOLID) with help of Node.js
+
+**Principles**
+* Single Responsibility Principle (SRP)
+* Open Closed Principle (OCP)
+* Liskov Substitution Principle (LSP)
+* Interface Segregation Principle (ISP)
+* Dependency Inversion Principle (DIP)
+* Separation of Concerns (SOC)
+* Don't Repeat Yourself (DRY)
+* You Aren't Gonna Need It (YAGNI)
+* Keep It Simple, Silly (KISS)
+* Composition Over Inheritance
+* Small Commits
+
+**Design Patterns**
+* Factory
+* Adapter
+* Composite
+* Decorator
+* Proxy
+* Dependency Injection
+* Abstract Server
+* Composition Root
+* Builder
 
 ## Summary
 
