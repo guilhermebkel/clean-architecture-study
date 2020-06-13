@@ -6,3 +6,6 @@ dist
 
 # Coverage Report
 coverage
+
+# Remove data folder
+data
