@@ -7,5 +7,5 @@ dist
 # Coverage Report
 coverage
 
-# Remove data folder
-data
+# Mongo folder
+!src/data
