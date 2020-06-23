@@ -12,6 +12,12 @@ const makeFakeAccount = (): AccountModel => ({
   password: 'hashed_password'
 })
 
+const makeFakeRequest = (): HttpRequest => ({
+  headers: {
+    'x-access-token': 'any_token'
+  }
+})
+
 const makeLoadAccountByToken = (): LoadAccountByToken => {
   class LoadAccountByTokenStub implements LoadAccountByToken {
     async load (accessToken: string, role?: string): Promise<AccountModel> {
@@ -55,11 +61,7 @@ describe('AuthMiddleware', () => {
 
     const loadSpy = jest.spyOn(loadAccountByTokenStub, 'load')
 
-    const httpRequest: HttpRequest = {
-      headers: {
-        'x-access-token': 'any_token'
-      }
-    }
+    const httpRequest = makeFakeRequest()
 
     await sut.handle(httpRequest)
 
