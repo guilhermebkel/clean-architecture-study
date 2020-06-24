@@ -133,5 +133,12 @@ describe('AccountMongoRepository', () => {
       expect(account.email).toEqual('any_mail@mail.com')
       expect(account.password).toEqual('any_password')
     })
+
+    test('Should return null if loadByToken fails', async () => {
+      const sut = makeSut()
+      const account = await sut.loadByToken('any_token', 'any_role')
+
+      expect(account).toBeFalsy()
+    })
   })
 })
