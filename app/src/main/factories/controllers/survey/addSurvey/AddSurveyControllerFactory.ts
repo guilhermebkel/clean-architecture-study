@@ -1,8 +1,8 @@
-import { Controller } from '../../../../presentation/protocols'
-import { makeLogControllerDecorator } from '../../decorators/LogControllerDecoratorFactory'
-import { AddSurveyController } from '../../../../presentation/controllers/survey/addSurvey/AddSurveyController'
+import { Controller } from '../../../../../presentation/protocols'
+import { makeLogControllerDecorator } from '../../../decorators/LogControllerDecoratorFactory'
+import { AddSurveyController } from '../../../../../presentation/controllers/survey/addSurvey/AddSurveyController'
 import { makeAddSurveyValidation } from './AddSurveyValidationFactory'
-import { makeDbAddSurvey } from '../../usecases/addSurvey/DbAddSurveyFactory'
+import { makeDbAddSurvey } from '../../../usecases/survey/addSurvey/DbAddSurveyFactory'
 
 export const makeAddSurveyController = (): Controller => {
   const dbAddSurvey = makeDbAddSurvey()
