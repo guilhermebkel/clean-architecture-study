@@ -1,6 +1,15 @@
 # clean-node
 :shower: A deep study about the best programming practices and design patterns (such as TDD, DDD, Clean Architecture and SOLID) with help of Node.js
 
+<p align="center">
+	<a href="https://travis-ci.org/guilhermebkel/clean-node">
+		<img src="https://travis-ci.org/guilhermebkel/clean-node.svg?branch=master">
+	</a>
+	<a href="https://coveralls.io/github/guilhermebkel/clean-node?branch=master">
+		<img src="https://coveralls.io/repos/github/guilhermebkel/clean-node/badge.svg?branch=master">
+	</a>
+</p>
+
 **Principles**
 * Single Responsibility Principle (SRP)
 * Open Closed Principle (OCP)
