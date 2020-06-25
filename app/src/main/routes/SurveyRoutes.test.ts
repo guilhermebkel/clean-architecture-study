@@ -71,36 +71,5 @@ describe('SurveyRoutes', () => {
         })
         .expect(204)
     })
-
-    test('Should return 403 on add survey without admin role', async () => {
-      const result = await accountCollection.insertOne({
-        name: 'valid_name',
-        email: 'valid_mail@mail.com',
-        password: 'any_password'
-      })
-
-      const accountId = result.ops[0]._id
-
-      const accessToken = sign({ id: accountId }, env.jwtSecret)
-
-      await accountCollection.updateOne({
-        _id: accountId
-      }, {
-        $set: {
-          accessToken
-        }
-      })
-
-      await request(app)
-        .post('/api/surveys')
-        .set('x-access-token', accessToken)
-        .send({
-          question: 'Question',
-          answers: [{
-            answer: 'An answer.'
-          }]
-        })
-        .expect(403)
-    })
   })
 })
