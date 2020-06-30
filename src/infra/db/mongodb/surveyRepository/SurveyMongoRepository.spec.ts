@@ -33,7 +33,8 @@ describe('SurveyMongoRepository', () => {
       answers: [{
         image: 'any_image',
         answer: 'any_answer'
-      }]
+      }],
+      date: new Date()
     })
 
     const survey = await surveyCollection.findOne({ question: 'any_question' })
