@@ -1,3 +1,4 @@
+import MockDate from 'mockdate'
 import { LoadSurveysRepository } from '../../protocols/db/survey/LoadSurveysRepository'
 import { SurveyModel } from '../../../domain/models/Survey'
 import { DbLoadSurveys } from './DbLoadSurveys'
@@ -40,6 +41,14 @@ const makeSut = (): SutTypes => {
 }
 
 describe('DBLoadSurveys Usecase', () => {
+  beforeAll(() => {
+    MockDate.set(new Date())
+  })
+
+  afterAll(() => {
+    MockDate.reset()
+  })
+
   test('Should call LoadSurveysRepository', async () => {
     const { sut, loadSurveysRepository } = makeSut()
 
