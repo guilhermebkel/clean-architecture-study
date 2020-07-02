@@ -25,7 +25,7 @@ const makeLoadSurveysRepository = (): LoadSurveysRepository => {
   return loadSurveysRepository
 }
 
-interface SutTypes {
+type SutTypes = {
   sut: DbLoadSurveys
   loadSurveysRepository: LoadSurveysRepository
 }

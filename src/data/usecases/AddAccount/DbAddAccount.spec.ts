@@ -49,7 +49,7 @@ const makeLoadAccountByEmailRepository = (): LoadAccountByEmailRepository => {
   return loadAccountByEmailRepositoryStub
 }
 
-interface SutTypes {
+type SutTypes = {
   sut: DbAddAccount
   hasherStub: Hasher
   addAccountRepositoryStub: AddAccountRepository
