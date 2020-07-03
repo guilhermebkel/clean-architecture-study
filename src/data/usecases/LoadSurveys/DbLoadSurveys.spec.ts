@@ -74,6 +74,6 @@ describe('DBLoadSurveys Usecase', () => {
 
     const promise = sut.load()
 
-    expect(promise).rejects.toThrow()
+    await expect(promise).rejects.toThrow()
   })
 })
