@@ -1,6 +1,6 @@
 import { MongoHelper } from '../helpers/MongoHelper'
-import { SaveSurveyResultRepository } from '@/data/protocols/db/survey/SaveSurveyResultRepository'
-import { SaveSurveyResultModel } from '@/domain/usecases/SaveSurveyResult'
+import { SaveSurveyResultRepository } from '@/data/protocols/db/account/SaveSurveyResultRepository'
+import { SaveSurveyResultModel } from '@/domain/usecases/surveyResult/SaveSurveyResult'
 import { SurveyResultModel } from '@/domain/models/SurveyResult'
 
 export class SurveyResultMongoRepository implements SaveSurveyResultRepository {

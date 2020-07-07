@@ -1,4 +1,4 @@
-import { SaveSurveyResultModel } from '@/domain/usecases/SaveSurveyResult'
+import { SaveSurveyResultModel } from '@/domain/usecases/surveyResult/SaveSurveyResult'
 import { SurveyResultModel } from '@/domain/models/SurveyResult'
 
 export interface SaveSurveyResultRepository {
