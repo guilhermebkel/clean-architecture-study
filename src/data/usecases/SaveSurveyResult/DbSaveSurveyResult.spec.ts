@@ -2,7 +2,7 @@ import MockDate from 'mockdate'
 import { DbSaveSurveyResult } from './DbSaveSurveyResult'
 import { SaveSurveyResultModel, SaveSurveyResultRepository, SurveyResultModel } from './DbSaveSurveyResultProtocols'
 
-const makeFakeSurveyResult = (): SaveSurveyResultModel => ({
+const makeFakeSurveyResultData = (): SaveSurveyResultModel => ({
   surveyId: 'any_survey_id',
   accountId: 'any_account_id',
   answer: 'any_answer',
@@ -10,15 +10,15 @@ const makeFakeSurveyResult = (): SaveSurveyResultModel => ({
   date: new Date()
 })
 
-const makeFakeSurveyResultData = (): SurveyResultModel => ({
-  ...makeFakeSurveyResult(),
+const makeFakeSurveyResult = (): SurveyResultModel => ({
+  ...makeFakeSurveyResultData(),
   id: 'any_id'
 })
 
 const makeSaveSurveyResultRepository = (): SaveSurveyResultRepository => {
   class SaveSurveyResultRepositoryStub implements SaveSurveyResultRepository {
     async save (data: SaveSurveyResultModel): Promise<SurveyResultModel> {
-      return await Promise.resolve(makeFakeSurveyResultData())
+      return await Promise.resolve(makeFakeSurveyResult())
     }
   }
 
@@ -56,7 +56,7 @@ describe('DBSaveSurveyResult Usecase', () => {
 
     const addSpy = jest.spyOn(saveSurveyResultRepositoryStub, 'save')
 
-    const surveyResultData = makeFakeSurveyResult()
+    const surveyResultData = makeFakeSurveyResultData()
 
     await sut.save(surveyResultData)
 
@@ -69,10 +69,20 @@ describe('DBSaveSurveyResult Usecase', () => {
     jest.spyOn(saveSurveyResultRepositoryStub, 'save')
       .mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
 
-    const surveyResultData = makeFakeSurveyResult()
+    const surveyResultData = makeFakeSurveyResultData()
 
     const promise = sut.save(surveyResultData)
 
     await expect(promise).rejects.toThrow()
+  })
+
+  test('Should return a SurveyResult on success', async () => {
+    const { sut } = makeSut()
+
+    const surveyResultData = makeFakeSurveyResultData()
+
+    const surveyResult = await sut.save(surveyResultData)
+
+    expect(surveyResult).toEqual(makeFakeSurveyResult())
   })
 })
