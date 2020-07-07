@@ -1,7 +1,4 @@
-import { LoadAccountByToken } from '../../../domain/usecases/LoadAccountByToken'
-import { AccountModel } from '../../../domain/models/Account'
-import { Decrypter } from '../../protocols/cryptography/Decrypter'
-import { LoadAccountByTokenRepository } from '../../protocols/db/account/LoadAccountByTokenRepository copy'
+import { LoadAccountByToken, AccountModel, Decrypter, LoadAccountByTokenRepository } from './DbLoadAccountByTokenProtocols'
 
 export class DbLoadAccountByToken implements LoadAccountByToken {
   constructor (
