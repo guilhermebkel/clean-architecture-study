@@ -50,63 +50,6 @@ describe('SurveyResultRoutes', () => {
     await accountCollection.deleteMany({})
   })
 
-  describe('POST /surveys', () => {
-    test('Should return 403 on add survey without accessToken', async () => {
-      await request(app)
-        .post('/api/surveys')
-        .send({
-          question: 'Question',
-          answers: [{
-            answer: 'An answer.'
-          }]
-        })
-        .expect(403)
-    })
-
-    test('Should return 204 on add survey with valid accessToken', async () => {
-      const accessToken = await makeAccessToken('admin')
-
-      await request(app)
-        .post('/api/surveys')
-        .set('x-access-token', accessToken)
-        .send({
-          question: 'Question',
-          answers: [{
-            answer: 'An answer.'
-          }]
-        })
-        .expect(204)
-    })
-  })
-
-  describe('GET /surveys', () => {
-    test('Should return 403 on load surveys without accessToken', async () => {
-      await request(app)
-        .get('/api/surveys')
-        .expect(403)
-    })
-
-    test('Should return 200 on load surveys with valid accessToken', async () => {
-      const accessToken = await makeAccessToken()
-
-      await surveyCollection.insertMany([
-        {
-          question: 'any_question',
-          answers: [{
-            image: 'any_image',
-            answer: 'any_answer'
-          }],
-          date: new Date()
-        }
-      ])
-
-      await request(app)
-        .get('/api/surveys')
-        .set('x-access-token', accessToken)
-        .expect(200)
-    })
-  })
-
   describe('PUT /surveys/:surveyId/results', () => {
     test('Should return 403 on save survey result without accessToken', async () => {
       await request(app)
@@ -115,6 +58,31 @@ describe('SurveyResultRoutes', () => {
           answer: 'An answer.'
         })
         .expect(403)
+    })
+
+    test('Should return 200 on save survey result with valid accessToken', async () => {
+      const accessToken = await makeAccessToken()
+
+      const res = await surveyCollection.insertOne({
+        question: 'any_question',
+        answers: [{
+          image: 'any_image',
+          answer: 'any_answer'
+        }, {
+          answer: 'An answer.'
+        }],
+        date: new Date()
+      })
+
+      const surveyId: string = res.ops[0]._id
+
+      await request(app)
+        .put(`/api/surveys/${surveyId}/results`)
+        .set('x-access-token', accessToken)
+        .send({
+          answer: 'An answer.'
+        })
+        .expect(200)
     })
   })
 })
