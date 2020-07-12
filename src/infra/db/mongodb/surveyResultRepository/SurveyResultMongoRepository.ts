@@ -1,5 +1,5 @@
-import { MongoHelper } from '../helpers/MongoHelper'
-import { SaveSurveyResultRepository } from '@/data/protocols/db/account/SaveSurveyResultRepository'
+import { MongoHelper } from '@/infra/db/mongodb/helpers/MongoHelper'
+import { SaveSurveyResultRepository } from '@/data/protocols/db/surveyResult/SaveSurveyResultRepository'
 import { SaveSurveyResultParams } from '@/domain/usecases/surveyResult/SaveSurveyResult'
 import { SurveyResultModel } from '@/domain/models/SurveyResult'
 

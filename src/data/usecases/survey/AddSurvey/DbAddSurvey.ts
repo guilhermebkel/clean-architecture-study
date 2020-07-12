@@ -1,4 +1,4 @@
-import { AddSurvey, AddSurveyRepository, AddSurveyParams } from './DbAddSurveyProtocols'
+import { AddSurvey, AddSurveyRepository, AddSurveyParams } from '@/data/usecases/survey/AddSurvey/DbAddSurveyProtocols'
 
 export class DbAddSurvey implements AddSurvey {
   constructor (

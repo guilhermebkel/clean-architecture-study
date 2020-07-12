@@ -1,4 +1,4 @@
-import { EmailValidatorAdapter } from './EmailValidatorAdapter'
+import { EmailValidatorAdapter } from '@/infra/validators/EmailValidatorAdapter'
 
 import validator from 'validator'
 

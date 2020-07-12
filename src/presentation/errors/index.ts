@@ -1,11 +1,11 @@
-export * from './InvalidParamError'
+export * from '@/presentation/errors/InvalidParamError'
 
-export * from './MissingParamError'
+export * from '@/presentation/errors/MissingParamError'
 
-export * from './ServerError'
+export * from '@/presentation/errors/ServerError'
 
-export * from './UnauthorizedError'
+export * from '@/presentation/errors/UnauthorizedError'
 
-export * from './EmailInUseError'
+export * from '@/presentation/errors/EmailInUseError'
 
-export * from './AccessDeniedError'
+export * from '@/presentation/errors/AccessDeniedError'

@@ -1,8 +1,8 @@
 import { Collection } from 'mongodb'
 
-import { MongoHelper } from '../helpers/MongoHelper'
+import { MongoHelper } from '@/infra/db/mongodb/helpers/MongoHelper'
 
-import { SurveyResultMongoRepository } from './SurveyResultMongoRepository'
+import { SurveyResultMongoRepository } from '@/infra/db/mongodb/surveyResultRepository/SurveyResultMongoRepository'
 import { SurveyModel } from '@/domain/models/Survey'
 import { AccountModel } from '@/domain/models/Account'
 

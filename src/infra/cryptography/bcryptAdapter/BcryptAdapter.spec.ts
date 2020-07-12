@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt'
 
-import { BcryptAdapter } from './BcryptAdapter'
+import { BcryptAdapter } from '@/infra/cryptography/bcryptAdapter/BcryptAdapter'
+import { throwError } from '@/domain/test'
 
 jest.mock('bcrypt', () => ({
   async hash (): Promise<string> {
@@ -41,7 +42,7 @@ describe('BcryptAdapter', () => {
     test('Should throw if hash method throws', async () => {
       const sut = makeSut()
 
-      jest.spyOn(bcrypt, 'hash').mockReturnValueOnce(Promise.reject(new Error()))
+      jest.spyOn(bcrypt, 'hash').mockImplementationOnce(throwError)
 
       const promise = sut.hash('valid_value')
 
@@ -81,7 +82,7 @@ describe('BcryptAdapter', () => {
     test('Should throw if compare method throws', async () => {
       const sut = makeSut()
 
-      jest.spyOn(bcrypt, 'compare').mockReturnValueOnce(Promise.reject(new Error()))
+      jest.spyOn(bcrypt, 'compare').mockImplementationOnce(throwError)
 
       const promise = sut.compare('any_value', 'any_hash')
 

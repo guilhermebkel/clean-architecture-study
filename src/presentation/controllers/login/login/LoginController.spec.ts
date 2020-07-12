@@ -1,10 +1,11 @@
-import { LoginController } from './LoginController'
+import { LoginController } from '@/presentation/controllers/login/login/LoginController'
 
-import { Authentication, HttpRequest, Validation } from './LoginControllerProtocols'
+import { Authentication, HttpRequest, Validation } from '@/presentation/controllers/login/login/LoginControllerProtocols'
 
-import { badRequest, serverError, unauthorized, ok } from '../../../helpers/http/HttpHelper'
-import { MissingParamError } from '../../../errors'
+import { badRequest, serverError, unauthorized, ok } from '@/presentation/helpers/http/HttpHelper'
+import { MissingParamError } from '@/presentation/errors'
 import { AuthenticationParams } from '@/domain/usecases/account/Authentication'
+import { throwError } from '@/domain/test'
 
 const makeAuthentication = (): Authentication => {
   class AuthenticationStub implements Authentication {
@@ -86,7 +87,7 @@ describe('LoginController', () => {
   test('Should return 500 if Authentication throws', async () => {
     const { sut, authenticationStub } = makeSut()
 
-    jest.spyOn(authenticationStub, 'auth').mockReturnValueOnce(Promise.reject(new Error()))
+    jest.spyOn(authenticationStub, 'auth').mockImplementationOnce(throwError)
 
     const httpRequest = makeFakeRequest()
 

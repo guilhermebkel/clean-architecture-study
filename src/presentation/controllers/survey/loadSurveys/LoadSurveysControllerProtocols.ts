@@ -1,5 +1,5 @@
-export * from '../../../protocols'
+export * from '@/presentation/protocols'
 
-export * from '../../../../domain/usecases/survey/LoadSurveys'
+export * from '@/domain/usecases/survey/LoadSurveys'
 
-export * from '../../../../domain/models/Survey'
+export * from '@/domain/models/Survey'

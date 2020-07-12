@@ -1,4 +1,4 @@
-import { LoadSurveys, LoadSurveysRepository, SurveyModel } from './DbLoadSurveysProtocols'
+import { LoadSurveys, LoadSurveysRepository, SurveyModel } from '@/data/usecases/survey/LoadSurveys/DbLoadSurveysProtocols'
 
 export class DbLoadSurveys implements LoadSurveys {
   constructor (

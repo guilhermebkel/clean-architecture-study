@@ -1,7 +1,7 @@
-export * from './CompareFieldsValidation'
+export * from '@/validation/validators/CompareFieldsValidation'
 
-export * from './EmailValidation'
+export * from '@/validation/validators/EmailValidation'
 
-export * from './RequiredFieldValidation'
+export * from '@/validation/validators/RequiredFieldValidation'
 
-export * from './ValidationComposite'
+export * from '@/validation/validators/ValidationComposite'

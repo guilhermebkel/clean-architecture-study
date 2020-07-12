@@ -1,7 +1,8 @@
-import { HttpRequest, AccountModel, LoadAccountByToken } from './AuthMiddlewareProtocols'
-import { forbidden, ok, serverError } from '../helpers/http/HttpHelper'
-import { AccessDeniedError } from '../errors'
-import { AuthMiddleware } from './AuthMiddleware'
+import { HttpRequest, AccountModel, LoadAccountByToken } from '@/presentation/middlewares/AuthMiddlewareProtocols'
+import { forbidden, ok, serverError } from '@/presentation/helpers/http/HttpHelper'
+import { AccessDeniedError } from '@/presentation/errors'
+import { AuthMiddleware } from '@/presentation/middlewares/AuthMiddleware'
+import { throwError } from '@/domain/test'
 
 const makeFakeAccount = (): AccountModel => ({
   id: 'valid_id',
@@ -91,7 +92,7 @@ describe('AuthMiddleware', () => {
   test('Should return 500 if LoadAccountByToken throws', async () => {
     const { sut, loadAccountByTokenStub } = makeSut()
 
-    jest.spyOn(loadAccountByTokenStub, 'load').mockReturnValueOnce(Promise.reject(new Error()))
+    jest.spyOn(loadAccountByTokenStub, 'load').mockImplementationOnce(throwError)
 
     const httpRequest = makeFakeRequest()
 

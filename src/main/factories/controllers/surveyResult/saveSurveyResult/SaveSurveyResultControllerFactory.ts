@@ -1,5 +1,5 @@
-import { Controller } from '../../../../../presentation/protocols'
-import { makeLogControllerDecorator } from '../../../decorators/LogControllerDecoratorFactory'
+import { Controller } from '@/presentation/protocols'
+import { makeLogControllerDecorator } from '@/main/factories/decorators/LogControllerDecoratorFactory'
 import { SaveSurveyResultController } from '@/presentation/controllers/surveyResult/saveSurveyResult/SaveSurveyResultController'
 import { makeDbSaveSurveyResult } from '@/main/factories/usecases/surveyResult/saveSurveyResult/DbSaveSurveyResultFactory'
 import { makeDbLoadSurveyById } from '@/main/factories/usecases/survey/loadSurveyById/DbLoadSurveyByIdFactory'
