@@ -2,14 +2,7 @@ import { HttpRequest, AccountModel, LoadAccountByToken } from '@/presentation/mi
 import { forbidden, ok, serverError } from '@/presentation/helpers/http/HttpHelper'
 import { AccessDeniedError } from '@/presentation/errors'
 import { AuthMiddleware } from '@/presentation/middlewares/AuthMiddleware'
-import { throwError } from '@/domain/test'
-
-const makeFakeAccount = (): AccountModel => ({
-  id: 'valid_id',
-  name: 'valid_name',
-  email: 'valid_email@mail.com',
-  password: 'hashed_password'
-})
+import { throwError, mockAccountModel } from '@/domain/test'
 
 const makeFakeRequest = (): HttpRequest => ({
   headers: {
@@ -20,7 +13,7 @@ const makeFakeRequest = (): HttpRequest => ({
 const makeLoadAccountByToken = (): LoadAccountByToken => {
   class LoadAccountByTokenStub implements LoadAccountByToken {
     async load (accessToken: string, role?: string): Promise<AccountModel> {
-      const account = makeFakeAccount()
+      const account = mockAccountModel()
 
       return await Promise.resolve(account)
     }
@@ -86,7 +79,7 @@ describe('AuthMiddleware', () => {
 
     const httpResponse = await sut.handle(httpRequest)
 
-    expect(httpResponse).toEqual(ok({ accountId: 'valid_id' }))
+    expect(httpResponse).toEqual(ok({ accountId: 'any_id' }))
   })
 
   test('Should return 500 if LoadAccountByToken throws', async () => {

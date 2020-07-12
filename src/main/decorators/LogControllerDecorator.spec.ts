@@ -2,12 +2,12 @@ import { LogControllerDecorator } from '@/main/decorators/LogControllerDecorator
 import { Controller, HttpRequest, HttpResponse } from '@/presentation/protocols'
 import { serverError, ok } from '@/presentation/helpers/http/HttpHelper'
 import { LogErrorRepository } from '@/data/protocols/db/log/LogErrorRepository'
-import { AccountModel } from '@/domain/models/Account'
+import { mockAccountModel } from '@/domain/test'
 
 const makeController = (): Controller => {
   class ControllerStub implements Controller {
     async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
-      const fakeAccount = makeFakeAccount()
+      const fakeAccount = mockAccountModel()
 
       const httpResponse: HttpResponse = ok(fakeAccount)
 
@@ -31,13 +31,6 @@ const makeLogErrorRepository = (): LogErrorRepository => {
 
   return logErrorRepositoryStub
 }
-
-const makeFakeAccount = (): AccountModel => ({
-  id: 'valid_id',
-  name: 'valid_name',
-  email: 'valid_email@mail.com',
-  password: 'valid_password'
-})
 
 const makeFakeRequest = (): HttpRequest => ({
   body: {
@@ -83,7 +76,7 @@ describe('LogControllerDecorator', () => {
     const { sut } = makeSut()
 
     const httpRequest: HttpRequest = makeFakeRequest()
-    const fakeAccount = makeFakeAccount()
+    const fakeAccount = mockAccountModel()
 
     const httpResponse = await sut.handle(httpRequest)
 
