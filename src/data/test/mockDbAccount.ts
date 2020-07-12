@@ -1,8 +1,8 @@
 import { AddAccountRepository } from '@/data/protocols/db/account/AddAccountRepository'
 import { AccountModel, AddAccountParams, LoadAccountByEmailRepository } from '@/data/usecases/account/AddAccount/DbAddAccountProtocols'
 import { mockAccountModel } from '@/domain/test'
-import { LoadAccountByTokenRepository } from '../protocols/db/account/LoadAccountByTokenRepository'
-import { UpdateAccessTokenRepository } from '../protocols/db/account/UpdateAccessTokenRepository'
+import { LoadAccountByTokenRepository } from '@/data/protocols/db/account/LoadAccountByTokenRepository'
+import { UpdateAccessTokenRepository } from '@/data/protocols/db/account/UpdateAccessTokenRepository'
 
 export const mockAddAccountRepository = (): AddAccountRepository => {
   class AddAccountRepositoryStub implements AddAccountRepository {
