@@ -1,4 +1,4 @@
-import { SurveyModel } from '../models/Survey'
+import { SurveyModel } from '@/domain/models/Survey'
 
 export const mockSurveyModel = (): SurveyModel => ({
   id: 'any_id',

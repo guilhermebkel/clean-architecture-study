@@ -3,7 +3,7 @@ import { HttpRequest, SurveyModel, LoadSurveyById, SaveSurveyResult, SurveyResul
 import { SaveSurveyResultController } from '@/presentation/controllers/surveyResult/saveSurveyResult/SaveSurveyResultController'
 import { forbidden, serverError, ok } from '@/presentation/helpers/http/HttpHelper'
 import { InvalidParamError } from '@/presentation/errors'
-import { throwError, mockSurveyModel } from '@/domain/test'
+import { throwError, mockSurveyModel, mockSurveyResultModel } from '@/domain/test'
 
 const makeFakeRequest = (): HttpRequest => ({
   params: {
@@ -13,18 +13,6 @@ const makeFakeRequest = (): HttpRequest => ({
     answer: 'any_answer'
   },
   accountId: 'any_account_id'
-})
-
-const makeFakeSurveyResultData = (): SaveSurveyResultParams => ({
-  surveyId: 'any_survey_id',
-  accountId: 'any_account_id',
-  answer: 'any_answer',
-  date: new Date()
-})
-
-const makeFakeSurveyResult = (): SurveyResultModel => ({
-  ...makeFakeSurveyResultData(),
-  id: 'any_id'
 })
 
 const makeLoadSurveyById = (): LoadSurveyById => {
@@ -42,7 +30,7 @@ const makeLoadSurveyById = (): LoadSurveyById => {
 const makeSaveSurveyResult = (): SaveSurveyResult => {
   class SaveSurveyStub implements SaveSurveyResult {
     async save (data: SaveSurveyResultParams): Promise<SurveyResultModel> {
-      return await Promise.resolve(makeFakeSurveyResult())
+      return await Promise.resolve(mockSurveyResultModel())
     }
   }
 
@@ -168,6 +156,6 @@ describe('SaveSurveyResultController', () => {
 
     const httpResponse = await sut.handle(httpRequest)
 
-    expect(httpResponse).toEqual(ok(makeFakeSurveyResult()))
+    expect(httpResponse).toEqual(ok(mockSurveyResultModel()))
   })
 })
