@@ -13,7 +13,7 @@ export const mockAccountModel = (): AccountModel => ({
   id: 'any_id'
 })
 
-export const mockAuthentication = (): AuthenticationParams => ({
+export const mockAuthenticationParams = (): AuthenticationParams => ({
   email: 'any_email@mail.com',
   password: 'any_password'
 })

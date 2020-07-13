@@ -4,6 +4,8 @@ import { MongoHelper } from '@/infra/db/mongodb/helpers/MongoHelper'
 
 import { AccountMongoRepository } from '@/infra/db/mongodb/accountRepository/AccountMongoRepository'
 
+import { mockAddAccountParams } from '@/domain/test'
+
 const makeSut = (): AccountMongoRepository => {
   return new AccountMongoRepository()
 }
@@ -30,15 +32,13 @@ describe('AccountMongoRepository', () => {
       const sut = makeSut()
 
       const account = await sut.add({
-        name: 'any_name',
-        email: 'any_mail@mail.com',
-        password: 'any_password'
+        ...mockAddAccountParams()
       })
 
       expect(account).toBeTruthy()
       expect(account.id).toBeTruthy()
       expect(account.name).toEqual('any_name')
-      expect(account.email).toEqual('any_mail@mail.com')
+      expect(account.email).toEqual('any_email@mail.com')
       expect(account.password).toEqual('any_password')
     })
   })
@@ -48,24 +48,22 @@ describe('AccountMongoRepository', () => {
       const sut = makeSut()
 
       await accountCollection.insertOne({
-        name: 'any_name',
-        email: 'any_mail@mail.com',
-        password: 'any_password'
+        ...mockAddAccountParams()
       })
 
-      const account = await sut.loadByEmail('any_mail@mail.com')
+      const account = await sut.loadByEmail('any_email@mail.com')
 
       expect(account).toBeTruthy()
       expect(account.id).toBeTruthy()
       expect(account.name).toEqual('any_name')
-      expect(account.email).toEqual('any_mail@mail.com')
+      expect(account.email).toEqual('any_email@mail.com')
       expect(account.password).toEqual('any_password')
     })
 
     test('Should return null if loadByEmail fails', async () => {
       const sut = makeSut()
 
-      const account = await sut.loadByEmail('any_mail@mail.com')
+      const account = await sut.loadByEmail('any_email@mail.com')
 
       expect(account).toBeFalsy()
     })
@@ -76,9 +74,7 @@ describe('AccountMongoRepository', () => {
       const sut = makeSut()
 
       const res = await accountCollection.insertOne({
-        name: 'any_name',
-        email: 'any_mail@mail.com',
-        password: 'any_password'
+        ...mockAddAccountParams()
       })
 
       const createdAccount = res.ops[0]
@@ -99,9 +95,7 @@ describe('AccountMongoRepository', () => {
       const sut = makeSut()
 
       await accountCollection.insertOne({
-        name: 'any_name',
-        email: 'any_mail@mail.com',
-        password: 'any_password',
+        ...mockAddAccountParams(),
         accessToken: 'any_token'
       })
 
@@ -110,7 +104,7 @@ describe('AccountMongoRepository', () => {
       expect(account).toBeTruthy()
       expect(account.id).toBeTruthy()
       expect(account.name).toEqual('any_name')
-      expect(account.email).toEqual('any_mail@mail.com')
+      expect(account.email).toEqual('any_email@mail.com')
       expect(account.password).toEqual('any_password')
     })
 
@@ -118,9 +112,7 @@ describe('AccountMongoRepository', () => {
       const sut = makeSut()
 
       await accountCollection.insertOne({
-        name: 'any_name',
-        email: 'any_mail@mail.com',
-        password: 'any_password',
+        ...mockAddAccountParams(),
         accessToken: 'any_token',
         role: 'admin'
       })
@@ -130,7 +122,7 @@ describe('AccountMongoRepository', () => {
       expect(account).toBeTruthy()
       expect(account.id).toBeTruthy()
       expect(account.name).toEqual('any_name')
-      expect(account.email).toEqual('any_mail@mail.com')
+      expect(account.email).toEqual('any_email@mail.com')
       expect(account.password).toEqual('any_password')
     })
 
@@ -138,9 +130,7 @@ describe('AccountMongoRepository', () => {
       const sut = makeSut()
 
       await accountCollection.insertOne({
-        name: 'any_name',
-        email: 'any_mail@mail.com',
-        password: 'any_password',
+        ...mockAddAccountParams(),
         accessToken: 'any_token'
       })
 
@@ -153,9 +143,7 @@ describe('AccountMongoRepository', () => {
       const sut = makeSut()
 
       await accountCollection.insertOne({
-        name: 'any_name',
-        email: 'any_mail@mail.com',
-        password: 'any_password',
+        ...mockAddAccountParams(),
         accessToken: 'any_token',
         role: 'admin'
       })
@@ -165,7 +153,7 @@ describe('AccountMongoRepository', () => {
       expect(account).toBeTruthy()
       expect(account.id).toBeTruthy()
       expect(account.name).toEqual('any_name')
-      expect(account.email).toEqual('any_mail@mail.com')
+      expect(account.email).toEqual('any_email@mail.com')
       expect(account.password).toEqual('any_password')
     })
 

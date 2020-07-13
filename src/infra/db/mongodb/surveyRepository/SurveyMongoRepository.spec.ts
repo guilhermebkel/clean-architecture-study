@@ -4,6 +4,8 @@ import { MongoHelper } from '@/infra/db/mongodb/helpers/MongoHelper'
 
 import { SurveyMongoRepository } from '@/infra/db/mongodb/surveyRepository/SurveyMongoRepository'
 
+import { mockAddSurveyParams } from '@/domain/test'
+
 const makeSut = (): SurveyMongoRepository => {
   return new SurveyMongoRepository()
 }
@@ -30,12 +32,7 @@ describe('SurveyMongoRepository', () => {
       const sut = makeSut()
 
       await sut.add({
-        question: 'any_question',
-        answers: [{
-          image: 'any_image',
-          answer: 'any_answer'
-        }],
-        date: new Date()
+        ...mockAddSurveyParams()
       })
 
       const survey = await surveyCollection.findOne({ question: 'any_question' })
@@ -88,12 +85,7 @@ describe('SurveyMongoRepository', () => {
   describe('loadById()', () => {
     test('Should load survey by id on success', async () => {
       const res = await surveyCollection.insertOne({
-        question: 'any_question',
-        answers: [{
-          image: 'any_image',
-          answer: 'any_answer'
-        }],
-        date: new Date()
+        ...mockAddSurveyParams()
       })
 
       const sut = makeSut()

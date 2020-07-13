@@ -21,7 +21,7 @@ const makeController = (): Controller => {
   return controllerStub
 }
 
-const makeFakeRequest = (): HttpRequest => ({
+const mockRequest = (): HttpRequest => ({
   body: {
     name: 'any_name',
     email: 'any@email.com',
@@ -54,7 +54,7 @@ describe('LogControllerDecorator', () => {
 
     const handleSpy = jest.spyOn(controllerStub, 'handle')
 
-    const httpRequest: HttpRequest = makeFakeRequest()
+    const httpRequest: HttpRequest = mockRequest()
 
     await sut.handle(httpRequest)
 
@@ -64,7 +64,7 @@ describe('LogControllerDecorator', () => {
   test('Should return the same result of the controller', async () => {
     const { sut } = makeSut()
 
-    const httpRequest: HttpRequest = makeFakeRequest()
+    const httpRequest: HttpRequest = mockRequest()
     const fakeAccount = mockAccountModel()
 
     const httpResponse = await sut.handle(httpRequest)
@@ -85,7 +85,7 @@ describe('LogControllerDecorator', () => {
     jest.spyOn(controllerStub, 'handle')
       .mockReturnValueOnce(Promise.resolve(error))
 
-    const httpRequest: HttpRequest = makeFakeRequest()
+    const httpRequest: HttpRequest = mockRequest()
 
     await sut.handle(httpRequest)
 
