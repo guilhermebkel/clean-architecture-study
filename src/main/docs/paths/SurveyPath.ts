@@ -4,7 +4,16 @@ export const surveyPath = {
       apiKeyAuth: []
     }],
     tags: ['Survey'],
-    summary: 'API for for listing all surveys',
+    summary: 'API for listing all surveys',
+    requestBody: {
+      content: {
+        'application/json': {
+          schema: {
+            $ref: '#/schemas/addSurveyParams'
+          }
+        }
+      }
+    },
     responses: {
       200: {
         description: 'Success',
@@ -24,6 +33,27 @@ export const surveyPath = {
       },
       401: {
         $ref: '#/components/unauthorizedError'
+      },
+      500: {
+        $ref: '#/components/serverError'
+      }
+    }
+  },
+  post: {
+    security: [{
+      apiKeyAuth: []
+    }],
+    tags: ['Survey'],
+    summary: 'API for creating a survey',
+    responses: {
+      204: {
+        description: 'Success'
+      },
+      403: {
+        $ref: '#/components/forbiddenError'
+      },
+      400: {
+        $ref: '#/components/badRequestError'
       },
       500: {
         $ref: '#/components/serverError'
