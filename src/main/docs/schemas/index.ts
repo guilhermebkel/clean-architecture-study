@@ -1,3 +1,7 @@
 export * from '@/main/docs/schemas/AccountSchema'
 export * from '@/main/docs/schemas/LoginParamsSchema'
 export * from '@/main/docs/schemas/ErrorSchema'
+export * from '@/main/docs/schemas/SurveySchema'
+export * from '@/main/docs/schemas/SurveyAnswerSchema'
+export * from '@/main/docs/schemas/SurveysSchema'
+export * from '@/main/docs/schemas/ApiKeyAuthSchema'
