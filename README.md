@@ -41,6 +41,7 @@
 - [ Best coding practices ](#best-coding-practices)
 - [ Design Pattern Decorator ](#design-pattern-decorator)
 - [ Design Pattern Composite ](#design-pattern-composite)
+- [ Step By Step ](#step-by-step)
 
 <a name="clean-architecture"></a>
 
@@ -272,3 +273,17 @@ validationComposite.validate({
 	phone: 123456789
 })
 ```
+
+<a name="step-by-step"></a>
+
+## Step By Step
+
+A good step by step to follow when building TDD Tests is:
+1. Create the UseCase
+2. Create the Test File for the class that will implement the UseCase
+3. Start creating failing tests
+4. Create the production class that implements the UseCase
+5. Create the mocks if needed (making sure the mock return will be hard coded to be successful with no spies)
+6. Create protocols for mocks if needed
+7. Finalize tests (try to test all core features)
+8. Refactor tests (add factories, remove code duplications, etc.)
