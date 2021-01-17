@@ -1,4 +1,4 @@
-# clean-node
+# clean-architecture-study
 :shower: A deep study about the best programming practices and design patterns (such as TDD, DDD, Clean Architecture and SOLID) with help of Node.js
 
 <p align="center">
